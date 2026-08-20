@@ -1,0 +1,536 @@
+@mixin hover() {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-within {
+      @content;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active,
+    &:focus,
+    &:focus-within {
+      @content;
+    }
+  }
+}
+@mixin hover-pseudo($pseudo) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover#{$pseudo},
+    &:focus-within#{$pseudo} {
+      @content;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active#{$pseudo},
+    &:focus#{$pseudo},
+    &:focus-within#{$pseudo} {
+      @content;
+    }
+  }
+}
+
+$transition-duraction: 0.3s;
+//===================================================================
+.button {
+  --radius: 0.5rem;
+  --p-block: 1rem;
+  --p-inline: 1.25rem;
+  --color: #2e2e;
+  --bg: transparent;
+
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  min-width: fit-content;
+  // width: min(100%, 592px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  padding-inline: var(--p-inline);
+  padding-block: var(--p-block);
+  transition-duration: $transition-duraction;
+  color: var(--color);
+  background-color: var(--bg);
+  // @include adaptive-property(padding-inline, 1.25, 1.5625, 1.375, rem);
+  // @include adaptive-property(padding-block, 0.625, 0.875, 0.875, rem);
+
+  &::after,
+  &::before {
+    content: "";
+  }
+}
+//****BACKGROUND
+//===============================================================
+.fill-down {
+  --border-color: #000;
+  --text-hover: #fff;
+  border: 2px solid var(--border-color);
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    bottom: 100%;
+    width: 150%;
+    height: 300%;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    z-index: -1;
+    transition: $transition-duraction ease-in-out;
+  }
+  @include hover {
+    color: var(--text-hover);
+  }
+  @include hover-pseudo("::before") {
+    bottom: -50%;
+  }
+}
+.fill-right {
+  --border-color: #222;
+  border: 2px solid var(--border-color);
+  overflow: hidden;
+  &::before {
+    width: 150%;
+    height: 400%;
+    position: absolute;
+    bottom: -400%;
+    right: -150%;
+    z-index: -1;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    transition: $transition-duraction;
+  }
+  @include hover {
+    color: #fff;
+    border-color: var(--border-color);
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  }
+  @include hover-pseudo("::before") {
+    bottom: -100%;
+    right: -40%;
+  }
+}
+.fill-center {
+  --border-color: #000;
+  --text-hover: #fff;
+  --color: #fff;
+
+  border: 2px solid var(--border-color);
+  background-color: var(--border-color);
+  color: var(--color);
+  overflow: hidden;
+  transition: color $transition-duraction ease-out 0.1s;
+
+  &::before {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    width: 25em;
+    height: 25em;
+    transition: box-shadow $transition-duraction ease-out;
+    z-index: -1;
+  }
+
+  @include hover {
+    color: var(--border-color);
+    border-color: var(--border-color);
+  }
+  @include hover-pseudo("::before") {
+    box-shadow: #fff 0px 0px 0px 15em inset;
+  }
+}
+.rain-drop {
+  --color: #222;
+
+  background-color: #e0e0e0;
+  box-shadow:
+    inset 4px 4px 10px #bcbcbc,
+    inset -4px -4px 10px #ffffff;
+  color: var(--color);
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #cecece;
+  @include hover {
+    box-shadow:
+      inset 2px 2px 5px #bcbcbc,
+      inset -2px -2px 5px #ffffff,
+      2px 2px 5px #bcbcbc,
+      -2px -2px 5px #ffffff;
+  }
+}
+.gradient {
+  --color: #fff;
+  color: var(--color);
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 300%;
+  z-index: 1;
+  &::before {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    background-size: 400%;
+    border-radius: 0.5rem;
+    transition: 1s;
+  }
+  &:active {
+    background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  }
+  @include hover {
+    animation: gradient-anim 8s linear infinite;
+  }
+  @include hover-pseudo("::before") {
+    filter: blur(20px);
+  }
+}
+@keyframes gradient-anim {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 400%;
+  }
+}
+.waves {
+  --color: #222;
+
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 0;
+  position: relative;
+  transition: all 400ms ease;
+
+  &__blobs {
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: -3px;
+    right: -1px;
+    z-index: -1;
+  }
+  &__blobs span {
+    background-color: var(--color);
+    width: 34%;
+    height: 110%;
+    border-radius: 100%;
+    position: absolute;
+    transform: scale(1.4) translateY(125%) translateZ(0);
+    transition: all 400ms ease;
+  }
+  &__blobs span:nth-child(1) {
+    left: -5%;
+  }
+  &__blobs span:nth-child(2) {
+    left: 30%;
+    transition-delay: 60ms;
+  }
+  &__blobs span:nth-child(3) {
+    left: 66%;
+    transition-delay: 25ms;
+  }
+  @include hover {
+    color: #fff;
+  }
+  @include hover-pseudo(" .waves__blobs span") {
+    transform: scale(1.5) translateY(0) translateZ(0);
+  }
+}
+.arrow-move {
+  --p-block: 1rem;
+  --p-inline: 2rem;
+  --gap: 0.5rem;
+  --radius: 50px;
+  --hover-radius: 20px;
+  --color: #222;
+  --hover-color: #000;
+
+  gap: var(--gap);
+  padding-inline: var(--p-inline);
+  padding-block: var(--p-block);
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: var(--radius);
+  color: var(--color);
+  box-shadow: 0 0 0 2px #ffffff;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+  svg {
+    --width: 20px;
+    --color: #1d1e21;
+
+    position: absolute;
+    width: var(--width);
+    fill: var(--color);
+    z-index: 2;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .arr-1 {
+    right: 16px;
+  }
+  .arr-2 {
+    left: -25%;
+  }
+  .circle {
+    --width: 20px;
+    --height: 20px;
+    --bag-color: #fefe;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--width);
+    height: var(--height);
+    background-color: var(--bag-color);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  &:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px #dbded6;
+  }
+  @include hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: var(--hover-color);
+    border-radius: var(--hover-radius);
+  }
+  @include hover-pseudo(" .arr-1") {
+    right: -25%;
+  }
+  @include hover-pseudo(" .arr-2") {
+    left: 16px;
+  }
+  @include hover-pseudo(" .text") {
+    transform: translateX(12px);
+  }
+  @include hover-pseudo(" svg") {
+    fill: var(--hover-color);
+  }
+  @include hover-pseudo(" .circle") {
+    width: 200%;
+    height: 200%;
+    opacity: 1;
+  }
+}
+//===============================================================
+//****BORDER
+.border-flip {
+  --color: #000;
+  --radius: 5px;
+
+  color: var(--color);
+  &::before {
+    position: absolute;
+    inset: 0px;
+    transform: perspective(300px) rotateX(0deg);
+    border: 2px solid currentColor;
+    border-radius: var(--radius);
+    transition: $transition-duraction;
+  }
+  @include hover {
+    background-color: rgba($color: #fff, $alpha: 0.9);
+  }
+  @include hover-pseudo("::before") {
+    border: 2px solid currentColor;
+    transform: perspective(350px) rotateX(-180deg);
+  }
+}
+.shine {
+  --color: rgb(165, 162, 162);
+  overflow: hidden;
+  border: 2px solid var(--color);
+  background: linear-gradient(
+    to right,
+    rgba(34, 34, 34, 0.1) 1%,
+    transparent 40%,
+    transparent 60%,
+    rgba(27, 253, 156, 0.1) 100%
+  );
+  color: var(--green);
+  box-shadow:
+    inset 0 0 10px rgba(240, 236, 236, 0.4),
+    0 0 9px 3px rgba(27, 253, 156, 0.1);
+
+  &::before {
+    position: absolute;
+    left: -4em;
+    width: 4em;
+    height: 100%;
+    top: 0;
+    transition: transform 0.4s ease-in-out;
+    background: linear-gradient(
+      to right,
+      transparent 1%,
+      rgba(27, 253, 156, 0.1) 40%,
+      rgba(27, 253, 156, 0.1) 60%,
+      transparent 100%
+    );
+  }
+  @include hover {
+    color: #000;
+    box-shadow:
+      inset 0 0 10px rgba(219, 225, 222, 0.6),
+      0 0 9px 3px rgba(27, 253, 156, 0.2);
+  }
+  @include hover-pseudo("::before") {
+    transform: translateX(15em);
+  }
+}
+//****ARROW-SHINE
+.arrow-shine {
+  --color: #000;
+  --bg: #2323;
+  --hover-border: #fff9;
+
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: var(--bg);
+  color: var(--color);
+  gap: 10px;
+  border: 2px solid currentColor;
+  overflow: hidden;
+  transition: all $transition-duraction ease-in-out;
+
+  .icon {
+    --w: 24px;
+    --h: 24px;
+
+    width: var(--w);
+    height: var(--h);
+    transition: all $transition-duraction ease-in-out;
+  }
+
+  &::before {
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+  @include hover {
+    transform: scale(1.05);
+    border-color: var(--hover-border);
+  }
+  @include hover-pseudo(" .icon") {
+    ransform: translate(4px);
+  }
+  @include hover-pseudo("::before") {
+    animation: shine 1.5s ease-out infinite;
+  }
+}
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+.slider-button {
+  --width: 76px;
+  --height: 76px;
+
+  display: block;
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+  }
+  &::before {
+    border: 2px solid black;
+    transition:
+      opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  &::after {
+    border: 3px solid #787f78;
+    transform: scale(1.3);
+    transition:
+      opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
+
+  .slider-button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .slider-button-elem {
+    --width: 30px;
+    --height: 30px;
+
+    display: block;
+    width: var(--width);
+    height: var(--height);
+    margin: 24px 18px 0 24px;
+    transform: rotate(360deg);
+    fill: #f0eeef;
+  }
+  @include hover-pseudo("::before") {
+    opacity: 0;
+    transform: scale(0.7);
+    transition:
+      opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  @include hover-pseudo("::after") {
+    opacity: 1;
+    transform: scale(1);
+    transition:
+      opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  @include hover-pseudo(" .slider-button-elem") {
+    transition: 0.4s;
+    transform: translateX(-72px);
+  }
+  @include hover-pseudo(" .slider-button-box") {
+    transition: 0.4s;
+    transform: translateX(-72px);
+  }
+}

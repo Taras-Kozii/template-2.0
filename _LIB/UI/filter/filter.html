@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FILTER</title>
+    <link rel="stylesheet" href="../null.css" />
+    <link rel="stylesheet" href="./filter.css" />
+  </head>
+  <body class="page">
+    <div class="wrapper">
+      <main class="main">
+        <section class="main__section">
+          <h2 class="main__title">filter 1</h2>
+          <div class="filters filters__wrap">
+            <div class="filters__buttons">
+              <button id="man" class="filters__button">man</button>
+              <button id="women" class="filters__button">women</button>
+              <button id="showAll" class="filters__button">Show All</button>
+            </div>
+            <div class="filters__items">
+              <article class="red filters__item" data-type="man">man</article>
+              <article class="red filters__item" data-type="women">
+                women
+              </article>
+              <article class="red filters__item" data-type="man">man</article>
+              <article class="red filters__item" data-type="women">
+                women
+              </article>
+              <article class="blue filters__item" data-type="man">man</article>
+              <article class="blue filters__item" data-type="women">
+                women
+              </article>
+              <article class="blue filters__item" data-type="man">man</article>
+              <article class="blue filters__item" data-type="women">
+                women
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="main__section">
+          <h1 class="main__title">FILTER 2</h1>
+          <div class="tabs">
+            <button class="tab active" data-category="all">All Photos</button>
+            <button class="tab" data-category="nature">Nature</button>
+            <button class="tab" data-category="architecture">
+              Architecture
+            </button>
+            <button class="tab" data-category="travel">Travel</button>
+            <button class="tab" data-category="food">Food</button>
+          </div>
+          <div class="gallery" id="gallery"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./filter.js"></script>
+  </body>
+</html>

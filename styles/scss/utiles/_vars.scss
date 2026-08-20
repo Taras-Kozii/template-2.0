@@ -1,0 +1,21 @@
+$font-family: "Roboto";
+$text-color-main: #000;
+$text-color-white: #fff;
+
+$bg-color-main: #fff;
+$bg-color-pink: #eddecf;
+$gradient: linear-gradient(0deg, #e093a0 0%, #ecddce 100%);
+
+$transition-duraction-long: 0.65s;
+$transition-duraction: 0.3s;
+
+$min-width: 320;
+$max-width: 1466;
+$container: 1262;
+$padding: 36;
+$max-width-container: calc($container + ($padding * 2));
+
+$pc: 1440;
+$tablet: 991.98; // Планшети, деякі телефони в горизонтальному положенні
+$mobile-l: 767.98; // Телефони L
+$mobile-s: 479.98; // Телефони S

@@ -1,0 +1,533 @@
+$transition-duraction: 0.3s;
+
+@mixin hover() {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-within {
+      @content;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active,
+    &:focus,
+    &:focus-within {
+      @content;
+    }
+  }
+}
+@mixin hover-pseudo($pseudo) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover#{$pseudo},
+    &:focus-within#{$pseudo} {
+      @content;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active#{$pseudo},
+    &:focus#{$pseudo},
+    &:focus-within#{$pseudo} {
+      @content;
+    }
+  }
+}
+.link {
+  --color: #222;
+  position: relative;
+  top: 0;
+  left: 0;
+  min-width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color);
+
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
+  text-transform: uppercase;
+  @include adaptive-property(font-size, 1, 0, 1.5, rem);
+}
+//*******UNDERLINE********************************************************************
+//неонове підкреслення
+.neon-underline {
+  --before-height: 2px;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: $transition-duraction;
+  transition-property: color;
+  &::before,
+  &::after {
+    content: "";
+    pointer-events: none;
+    left: 0px;
+    bottom: -4px;
+    position: absolute;
+    width: 0%;
+    height: var(--before-height);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 500ms;
+    transition-property: width, left;
+  }
+  &::after {
+    background-color: #bc9835e1;
+  }
+  &::before {
+    background-color: #0f0;
+    filter: blur(5px);
+  }
+  @include hover {
+    transition-duration: $transition-duraction;
+    background: linear-gradient(0, #0f0, #000 70%, #000 99%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  @include hover-pseudo("::after") {
+    width: 100%;
+    left: 0px;
+  }
+  @include hover-pseudo("::before") {
+    width: 100%;
+    left: 0px;
+  }
+}
+//лінія від центру в боки
+.underline-show-center {
+  --color: #000;
+  --before-height: 2px;
+
+  color: var(--color);
+  cursor: pointer;
+  span {
+    position: relative;
+    color: var(--color);
+    &::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      width: 100%;
+      height: var(--before-height);
+      background-color: currentColor;
+      transform-origin: center;
+      transform: translate(-50%, 0) scaleX(0);
+      transition: transform $transition-duraction ease-in-out;
+    }
+    @include hover-pseudo("::before") {
+      transform: translate(-50%, 0) scaleX(1);
+    }
+  }
+}
+//ліня зявляється з ліва і тягнеття вправо
+.underline-show-left-right {
+  --before-height: 2px;
+  span {
+    position: relative;
+    &::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: var(--before-height);
+      background-color: currentColor;
+      border-radius: 5px;
+      transform-origin: bottom right;
+      transform: scaleX(0);
+      transition: transform $transition-duraction ease;
+    }
+    @include hover-pseudo("::before") {
+      transform-origin: bottom left;
+      transform: scaleX(1);
+    }
+  }
+}
+//ліня зникає з ліва на право
+.underline-hidden {
+  --before-height: 2px;
+  span {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      height: var(--before-height);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: currentColor;
+      transform-origin: bottom left;
+      transform: scaleX(1);
+      transition: transform $transition-duraction ease-in-out;
+    }
+
+    @include hover-pseudo("::before") {
+      transform: scaleX(0);
+      transform-origin: bottom right;
+    }
+  }
+}
+//ліня зникає від центу в боки
+.underline-hidden-center {
+  --color: #000;
+  --before-height: 2px;
+
+  color: var(--color);
+  cursor: pointer;
+  span {
+    position: relative;
+    color: var(--color);
+    &::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      width: 100%;
+      height: var(--before-height);
+      background-color: currentColor;
+      transform-origin: center;
+      transform: translate(-50%, 0) scaleX(1);
+      transition: transform $transition-duraction ease-in-out;
+    }
+    @include hover-pseudo("::before") {
+      transform: translate(-50%, 0) scaleX(0);
+    }
+  }
+}
+// *******COLOR************************************************************
+//зміна кольору і підкреслення
+.color-change-line {
+  --primary-color: #222;
+  --hovered-color: #c84747;
+  --font-size: 20px;
+
+  position: relative;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: var(--font-size);
+
+  span {
+    position: relative;
+    font-size: var(--font-size);
+    color: var(--primary-color);
+    &::before {
+      position: absolute;
+      content: "Explore more";
+      width: 0%;
+      inset: 0;
+      color: var(--hovered-color);
+      overflow: hidden;
+      transition: $transition-duraction ease-out;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+  }
+  @include hover-pseudo("::after") {
+    width: 100%;
+  }
+  @include hover-pseudo("span::before") {
+    width: 100%;
+  }
+}
+//градієнт зміни кольору
+.gradient-link {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  span {
+    color: transparent;
+    background: conic-gradient(
+      from 0deg,
+      #050505,
+      #4ecdc4,
+      #45b7d1,
+      #96ceb4,
+      #feca57,
+      #ff9ff3,
+      #090909
+    );
+    background-clip: text;
+    filter: hue-rotate(0deg);
+  }
+  @include hover {
+    animation: hue-rotating 2s linear infinite;
+  }
+}
+@keyframes hue-rotating {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+//фон заповлюється як хвилі - для виликих шрифтів
+.wave-bg {
+  --color: #222;
+  span {
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  span:nth-child(1) {
+    color: var(--color);
+    -webkit-text-stroke: 1px var(--color);
+    transition: 0.3s linear;
+  }
+  span:nth-child(2) {
+    color: var(--color);
+    animation: wave 2s ease-in-out infinite;
+    animation-play-state: paused;
+    @include hover {
+      animation-play-state: running;
+    }
+  }
+}
+.wave-bg:has(span:nth-child(2):hover) {
+  span:nth-child(1) {
+    color: transparent;
+  }
+}
+@keyframes wave {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+//зміна кольору і підкреслення
+.color-change {
+  --primary-color: #222;
+  --hovered-color: #c84747;
+  --font-size: 20px;
+
+  position: relative;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: var(--font-size);
+
+  span {
+    position: relative;
+    font-size: var(--font-size);
+    color: var(--primary-color);
+    &::before {
+      position: absolute;
+      content: "Explore more";
+      width: 0%;
+      inset: 0;
+      color: var(--hovered-color);
+      overflow: hidden;
+      transition: $transition-duraction ease-out;
+    }
+  }
+  @include hover-pseudo("span::before") {
+    width: 100%;
+  }
+}
+// *******BARS************************************************************
+//лінії зверху і знизу на половину ширини
+.two-lines {
+  --color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 3s;
+  transition-property: color;
+  &::after {
+    --height: 2px;
+    --bg-color: #fff;
+
+    content: "";
+    pointer-events: none;
+    bottom: 20px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: var(--height);
+    background-color: var(--bg-color);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 300ms;
+    transition-property: width, left;
+  }
+  span {
+    color: #222;
+    transition: $transition-duraction;
+    &::after {
+      content: "";
+      pointer-events: none;
+      bottom: -2px;
+      left: 50%;
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background-color: #fff;
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-duration: 400ms;
+      transition-property: width, right;
+    }
+    @include hover {
+      color: #fff;
+    }
+    @include hover-pseudo("::after") {
+      width: 50%;
+      right: 0%;
+    }
+  }
+  @include hover {
+    color: #fff;
+  }
+  @include hover-pseudo("::after") {
+    width: 50%;
+    left: 0%;
+  }
+}
+//лінії зверху і знизу
+.show-bars {
+  --before-height: 2px;
+  --bg-color: #cadb0e9e;
+  position: relative;
+  padding-block: 2px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    height: var(--before-height);
+    background-color: var(--bg-color);
+    transform: scaleX(0);
+    transition: transform $transition-duraction ease;
+  }
+
+  &::before {
+    top: -3px;
+    transform-origin: center right;
+  }
+  &::after {
+    bottom: -3px;
+    transform-origin: center left;
+  }
+  @include hover-pseudo("::before") {
+    transform-origin: center left;
+    transform: scaleX(1);
+  }
+  @include hover-pseudo("::after") {
+    transform-origin: center right;
+    transform: scaleX(1);
+  }
+  @include hover {
+    font-weight: 700;
+  }
+}
+//*******ARROW
+.color-change-arrow {
+  --primary-color: #222;
+  --hovered-color: #c84747;
+  --font-size: 20px;
+
+  position: relative;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  font-size: var(--font-size);
+
+  span {
+    position: relative;
+    font-size: var(--font-size);
+    color: var(--primary-color);
+    &::before {
+      position: absolute;
+      content: "Explore more";
+      width: 0%;
+      inset: 0;
+      color: var(--hovered-color);
+      overflow: hidden;
+      transition: $transition-duraction ease-out;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+  }
+  & svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+  }
+  @include hover-pseudo(" svg") {
+    transform: translateX(4px);
+    color: var(--hovered-color);
+  }
+  @include hover-pseudo("::after") {
+    width: 100%;
+  }
+  @include hover-pseudo("span::before") {
+    width: 100%;
+  }
+}
+.show-mask {
+  padding: 5px 2px;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: -0.25em;
+    right: -0.25em;
+    transform-origin: center right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    background-image: url("./mask.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  @include hover-pseudo("::before") {
+    transform: scaleX(1);
+    transform-origin: center left;
+  }
+}

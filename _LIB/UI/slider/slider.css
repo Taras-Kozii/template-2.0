@@ -1,0 +1,161 @@
+.section-slider {
+  min-width: 0;
+  min-height: 200px;
+  width: clamp(260px, 100%, 1200px);
+}
+.section-slider-button {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 50%;
+  background-color: #222;
+  width: 40px;
+  height: 40px;
+  z-index: 5;
+}
+.section-slider-next {
+  right: 0;
+  rotate: 180deg;
+}
+.section-slider-prev {
+  left: 0;
+}
+.section-slide {
+  padding: 1rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  flex-shrink: 0;
+  flex-grow: 1;
+  cursor: pointer;
+  transition: 0.3s;
+  overflow: hidden;
+  width: clamp(260px, 100%, 400px);
+  border-radius: 25px;
+  background-color: bisque;
+}
+.section-slide__body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
+.section-slide__img {
+  flex-shrink: 0;
+  width: clamp(240px, 100%, 300px);
+  height: clamp(240px, 100%, 300px);
+  border-radius: 25px;
+}
+.section-slide__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/*************РОЗТАШУВАННЯ СТРІЛОК ЗА МЕЖАМИ СЛАЙДІВ************/
+.custom__slider {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.custom-slider {
+  --max-width: 1200;
+
+  min-width: 0;
+  min-height: 200px;
+  width: clamp(280px, calc(280px + (100vw - 320px) * (920 / 880)), 1200px);
+}
+.custom-slider-button {
+  --bg-color: #222;
+  --width: 40px;
+  --height: 40px;
+
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  z-index: 3;
+  width: var(--width);
+  height: var(--height);
+}
+.custom-slider-next {
+  right: -50px;
+  rotate: 180deg;
+}
+.custom-slider-prev {
+  left: -50px;
+}
+
+/*============= слайд =============*/
+
+.custom-slide {
+  --max-width: 400;
+  --radius: 25px;
+  --bg-color: #cc7272;
+
+  position: relative;
+  left: 0;
+  top: 0;
+  flex-shrink: 0;
+  flex-grow: 1;
+  cursor: pointer;
+  overflow: hidden;
+  width: clamp(280px, calc(280px + (100vw - 320px) * (120 / 80)), 350px);
+  border-radius: var(--radius);
+  background-color: var(--bg-color);
+
+  padding-inline: clamp(12px, calc(12px + (100vw - 320px) * (12 / 880)), 24px);
+  padding-block: clamp(12px, calc(12px + (100vw - 320px) * (12 / 880)), 24px);
+}
+
+.custom-slide__body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-slide__img {
+  width: clamp(140px, calc(140px + (100vw - 320px) * (160 / 580)), 300px);
+  height: clamp(140px, calc(140px + (100vw - 320px) * (160 / 580)), 300px);
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.custom-slide__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.custom-pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+  span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+}

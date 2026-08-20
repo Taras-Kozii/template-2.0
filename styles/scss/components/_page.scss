@@ -1,0 +1,37 @@
+@use "sass:math";
+@use "../utiles/index" as *;
+
+.page {
+  min-width: #{$min-width}px;
+  font-family: $font-family;
+  color: $text-color-main;
+  background-color: $bg-color-main;
+  font-weight: 400;
+  overflow-x: clip;
+  @include adaptive-property(font-size, 0.875, 1, 1.125, rem);
+}
+.page.lock {
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+
+  > main {
+    flex: 1 1 auto;
+  }
+
+  > * {
+    min-width: 0;
+  }
+}
+[class*="__container"] {
+  max-width: #{$max-width-container}px;
+  margin-inline: auto;
+  overflow-x: clip;
+  @include adaptive-property(padding-inline, calc($padding / 2), 0, $padding);
+}

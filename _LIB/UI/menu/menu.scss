@@ -1,0 +1,168 @@
+@keyframes open-anim {
+  50% {
+    width: 300%;
+    height: 300%;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+$transition-duraction: 0.3s;
+$background: #cca9a9;
+
+.menu {
+  &__body {
+    @media (max-width: 1024.9px) {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 0px;
+      height: 0px;
+      background: $background;
+      border-bottom-left-radius: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+      transition: $transition-duraction;
+      overflow-y: auto;
+      z-index: 2;
+    }
+  }
+
+  &__list {
+    @media (max-width: 1024.9px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 2rem;
+    }
+    @media (min-width: 1024.9px) {
+      padding-block: 0.5rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      row-gap: 1.5rem;
+      @include adaptive-property(column-gap, 32, 0, 64);
+    }
+  }
+
+  &__item,
+  &__link {
+    @media (max-width: 1024.9px) {
+      opacity: 0;
+    }
+  }
+
+  &__link {
+    @media (min-width: 1024.9px) {
+      display: inline-block;
+      font-weight: 400;
+      color: $text-color-main;
+      @include adaptive-property(font-size, 1.5, 0, 1.25, rem);
+    }
+  }
+}
+
+.menu__body.open {
+  padding: 100px 30px 50px;
+  animation: open-anim 0.6s ease both;
+}
+
+.menu__body.open li,
+.menu__body.open a {
+  opacity: 1;
+  transition: 0.4s ease-in-out 0.38s;
+}
+
+//=======================================BURGER 1 SPAN ==========================
+$menu-size: 40px;
+$line-height: 3px;
+$gap: $line-height * 5;
+$bg-color: #000;
+$radius: 0;
+
+%menu-dash {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background-color: $bg-color;
+  width: $menu-size;
+  height: $line-height;
+  border-radius: $radius;
+}
+
+.burger {
+  @media (max-width: 1024.9px) {
+    width: $menu-size;
+    height: $menu-size;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    outline: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+
+  span {
+    @extend %menu-dash;
+    margin-top: calc($line-height / -2);
+  }
+
+  &:before {
+    content: "";
+    @extend %menu-dash;
+    margin-top: -$gap + calc($line-height / -2);
+  }
+
+  &:after {
+    content: "";
+    @extend %menu-dash;
+    margin-top: $gap + calc($line-height / -2);
+  }
+
+  @media (min-width: 1024.9px) {
+    display: none;
+  }
+}
+
+.translate-center {
+  span {
+    transition: 0.2s ease-in-out 0.2s;
+  }
+
+  &:before,
+  &:after {
+    transition:
+      margin 0.2s ease-in-out 0.2s,
+      transform 0.2s ease-in-out 0s;
+  }
+
+  &.active {
+    span {
+      background-color: rgba($bg-color, 0);
+      transition-delay: 0s;
+    }
+
+    &:before,
+    &:after {
+      margin-top: 0;
+      transition-delay: 0s, 0.25s, 0.25s;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}

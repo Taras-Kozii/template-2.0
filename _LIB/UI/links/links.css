@@ -1,0 +1,635 @@
+.links {
+  position: relative;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  column-gap: 2rem;
+  row-gap: 4rem;
+  justify-content: space-between;
+  align-items: center;
+}
+/* =========================================================== */
+.link {
+  --color: #222;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color);
+  cursor: pointer;
+
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
+  font-size: 1.25rem;
+}
+/* UNDERLINE======================================================== */
+.neon-underline {
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: color;
+}
+.neon-underline:hover {
+  transition-duration: 300ms;
+  background: linear-gradient(0, rgb(255, 149, 0), #000 70%, #000 99%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #f3b20ee1;;
+}
+.neon-underline:hover:after {
+  width: 100%;
+  left: 0px;
+}
+.neon-underline:after {
+  content: "";
+  pointer-events: none;
+  bottom: -4px;
+  left: 0px;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #fae7b5e1;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 500ms;
+  transition-property: width, left;
+}
+.neon-underline:hover:before {
+  width: 100%;
+  left: 0px;
+}
+.neon-underline:before {
+  content: "";
+  pointer-events: none;
+  bottom: -4px;
+  left: 0px;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #0f0;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: width, left;
+  filter: blur(5px);
+}
+/*====================================== */
+.underline-show-center {
+  --color: #000;
+  --before-height: 2px;
+  color: var(--color);
+  cursor: pointer;
+}
+.underline-show-center span {
+  position: relative;
+  color: var(--color);
+}
+.underline-show-center span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 100%;
+  height: var(--before-height);
+  background-color: currentColor;
+  transform-origin: center;
+  transform: translate(-50%, 0) scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .underline-show-center span:hover::before,
+  .underline-show-center span:focus-within::before {
+    transform: translate(-50%, 0) scaleX(1);
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .underline-show-center span:active::before,
+  .underline-show-center span:focus::before,
+  .underline-show-center span:focus-within::before {
+    transform: translate(-50%, 0) scaleX(1);
+  }
+}
+/* =================================================== */
+.underline-show-left-right span {
+  position: relative;
+}
+.underline-show-left-right span::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 5px;
+  transform-origin: bottom right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .underline-show-left-right span:hover::before,
+  .underline-show-left-right span:focus-within::before {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .underline-show-left-right span:active::before,
+  .underline-show-left-right span:focus::before,
+  .underline-show-left-right span:focus-within::before {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+}
+.underline-hidden {
+  --before-height: 2px;
+}
+.underline-hidden span {
+  position: relative;
+}
+.underline-hidden span::before {
+  content: "";
+  position: absolute;
+  height: var(--before-height);
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  background-color: currentColor;
+  transform-origin: bottom left;
+  transform: scaleX(1);
+  transition: transform 0.3s ease-in-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .underline-hidden span:hover::before,
+  .underline-hidden span:focus-within::before {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .underline-hidden span:active::before,
+  .underline-hidden span:focus::before,
+  .underline-hidden span:focus-within::before {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+}
+/*=================================================*/
+.underline-hidden-center {
+  --color: #000;
+  --before-height: 2px;
+  color: var(--color);
+  cursor: pointer;
+}
+.underline-hidden-center span {
+  position: relative;
+  color: var(--color);
+}
+.underline-hidden-center span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 100%;
+  height: var(--before-height);
+  background-color: currentColor;
+  transform-origin: center;
+  transform: translate(-50%, 0) scaleX(1);
+  transition: transform 0.3s ease-in-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .underline-hidden-center span:hover::before,
+  .underline-hidden-center span:focus-within::before {
+    transform: translate(-50%, 0) scaleX(0);
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .underline-hidden-center span:active::before,
+  .underline-hidden-center span:focus::before,
+  .underline-hidden-center span:focus-within::before {
+    transform: translate(-50%, 0) scaleX(0);
+  }
+}
+/*=================================================*/
+.color-change-line {
+  --primary-color: #222;
+  --hovered-color: #c84747;
+  position: relative;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 20px;
+}
+.color-change-line span {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+.color-change-line::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+.color-change-line span::before {
+  position: absolute;
+  content: "Explore more";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+.color-change-line:hover::after {
+  width: 100%;
+}
+.color-change-line:hover span::before {
+  width: 100%;
+}
+.color-change-linee:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+.color-change-line svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
+}
+/*=================================================*/
+.gradient-link {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.gradient-link span {
+  color: transparent;
+  background: conic-gradient(
+    from 0deg,
+    #050505,
+    #4ecdc4,
+    #db510b,
+    #96ceb4,
+    #9d57fe,
+    #ff9ff3,
+    #090909
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: hue-rotate(0deg);
+}
+@keyframes hue-rotating {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+.gradient-link:hover {
+  animation: hue-rotating 2s linear infinite;
+}
+/* ==========================================================*/
+.wave-bg {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+ .wave-bg span {
+  font-size: 2rem;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(25%, -50%);
+}
+
+.wave-bg span:nth-child(1) {
+  color: #222;
+  transition: 0.3s linear;
+  -webkit-text-stroke: 1px #222;
+}
+
+.wave-bg span:nth-child(2) {
+  color: #222;
+  animation: wave 2s ease-in-out infinite;
+  animation-play-state: paused;
+
+}
+.wave-bg span:nth-child(2):hover {
+   animation-play-state: running;
+}
+.wave-bg:has(span:nth-child(2):hover) {
+  span:nth-child(1) {
+     color: transparent;
+     -webkit-text-stroke: 1px #222;
+  }
+}
+@keyframes wave {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+/* ====================================== */
+.color-change {
+  --primary-color: #222;
+  --hovered-color: #c84747;
+  position: relative;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 20px;
+}
+.color-change span {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+.color-change span::before {
+  position: absolute;
+  content: "Explore more";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+.color-change:hover span::before {
+  width: 100%;
+}
+/*================================================== */
+.two-lines {
+  --color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 3s;
+  transition-property: color;
+}
+.two-lines span {
+  transition: 0.3s;
+  color: #222;
+}
+.two-lines::after {
+  --height: 2px;
+  --bg-color: #fff;
+
+  content: "";
+  pointer-events: none;
+  bottom: 20px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: var(--height);
+  background-color: var(--bg-color);
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: width, left;
+}
+.two-lines span::after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, right;
+}
+@media (hover: hover) and (pointer: fine) {
+  .two-lines span:hover,
+  .two-lines span:focus-within {
+    color: var(--color);
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .two-lines span:active,
+  .two-lines span:focus,
+  .two-lines span:focus-within {
+    color: var(--color);
+  }
+}
+/* hover-pseudo для span::after */
+@media (hover: hover) and (pointer: fine) {
+  .two-lines span:hover::after,
+  .two-lines span:focus-within::after {
+    width: 50%;
+    right: 0%;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .two-lines span:active::after,
+  .two-lines span:focus::after,
+  .two-lines span:focus-within::after {
+    width: 50%;
+    right: 0%;
+  }
+}
+/* hover для .two-lines */
+@media (hover: hover) and (pointer: fine) {
+  .two-lines:hover,
+  .two-lines:focus-within {
+    color: var(--color);
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .two-lines:active,
+  .two-lines:focus,
+  .two-lines:focus-within {
+    color: var(--color);
+  }
+}
+/* hover-pseudo для .two-lines::after */
+@media (hover: hover) and (pointer: fine) {
+  .two-lines:hover::after,
+  .two-lines:focus-within::after {
+    width: 50%;
+    left: 0%;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .two-lines:active::after,
+  .two-lines:focus::after,
+  .two-lines:focus-within::after {
+    width: 50%;
+    left: 0%;
+  }
+}
+/* ==================================================*/
+.show-bars {
+  --before-height: 2px;
+  --bg-color: #2f301e9e;
+  position: relative;
+  padding-block: 2px;
+}
+.show-bars::before,
+.show-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--before-height);
+  background-color: var(--bg-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.show-bars::before {
+  top: -3px;
+  transform-origin: center right;
+}
+.show-bars::after {
+  bottom: -3px;
+  transform-origin: center left;
+}
+@media (hover: hover) and (pointer: fine) {
+  .show-bars:hover::before,
+  .show-bars:focus-within::before {
+    transform-origin: center left;
+    transform: scaleX(1);
+  }
+
+  .show-bars:hover::after,
+  .show-bars:focus-within::after {
+    transform-origin: center right;
+    transform: scaleX(1);
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  .show-bars:active::before,
+  .show-bars:focus::before,
+  .show-bars:focus-within::before {
+    transform-origin: center left;
+    transform: scaleX(1);
+  }
+
+  .show-bars:active::after,
+  .show-bars:focus::after,
+  .show-bars:focus-within::after {
+    transform-origin: center right;
+    transform: scaleX(1);
+  }
+ц
+  .show-bars:active,
+  .show-bars:focus,
+  .show-bars:focus-within {
+    font-weight: 700;
+  }
+}
+/* =====================================*/
+.color-change-arrow {
+  --primary-color: #222;
+  --hovered-color: #c84747;
+  position: relative;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+.color-change-arrow span {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.color-change-arrow::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+
+.color-change-arrow span::before {
+  position: absolute;
+  content: "Explore more";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.color-change-arrow:hover::after {
+  width: 100%;
+}
+
+.color-change-arrow:hover span::before {
+  width: 100%;
+}
+
+.color-change-arrow:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+.color-change-arrow svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
+}
+/* ===================================== */
+.show-mask {
+  padding: 5px 2px;
+  z-index: 1;
+}
+.show-mask span {
+  position: relative;
+  transition: 0.3s linear;
+  z-index: 2;
+}
+.show-mask::before {
+  content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: -0.25em;
+    right: -0.25em;
+    transform-origin: center right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    background-image: url("./mask.png");
+    background-position: center;
+    background-size: 110% 250%;
+    background-repeat: no-repeat;
+}
+.show-mask:hover::before {
+    transform: scaleX(1);
+    transform-origin: center left;
+}
+.show-mask:hover span {
+  color: #fff;
+}

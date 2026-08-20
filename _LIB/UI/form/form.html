@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM</title>
+    <link rel="stylesheet" href="../null.css" />
+    <link rel="stylesheet" href="./form.css" />
+  </head>
+  <body class="page">
+    <div class="wrapper">
+      <main class="main">
+        <section class="main__section">
+          <h1 class="main__title">FORM</h1>
+          <form
+            action="/submit"
+            method="post"
+            id="registrationForm"
+            name="registrationForm"
+            enctype="multipart/form-data"
+            autocomplete="on"
+            accept-charset="UTF-8"
+            novalidate
+            class="form"
+          >
+            <fieldset class="fieldset">
+              <legend>Особиста інформація</legend>
+
+              <!-- Text -->
+              <div class="form__elem">
+                <label for="firstName">Ім'я *</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="Введіть ім'я"
+                  required
+                  minlength="2"
+                  maxlength="50"
+                  autocomplete="given-name"
+                  spellcheck="false"
+                  inputmode="text"
+                />
+              </div>
+
+              <!-- Last Name -->
+              <div class="form__elem">
+                <label for="lastName">Прізвище *</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Введіть прізвище"
+                  required
+                  minlength="2"
+                  maxlength="50"
+                  autocomplete="family-name"
+                  inputmode="text"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="form__elem">
+                <label for="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="example@mail.com"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                />
+              </div>
+
+              <!-- Password -->
+              <div class="form__elem">
+                <label for="password">Пароль *</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  minlength="8"
+                  maxlength="32"
+                  autocomplete="new-password"
+                />
+              </div>
+
+              <!-- Phone -->
+              <div class="form__elem">
+                <label for="phone">Телефон</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  autocomplete="tel"
+                  placeholder="+38 (000) 000 00 00"
+                  inputmode="tel"
+                  pattern="^(\+380\d{9}|0\d{9})$"
+                  required
+                  inputmode="tel"
+                />
+              </div>
+
+              <!-- URL -->
+              <div class="form__elem">
+                <label for="website">Вебсайт</label>
+                <input
+                  type="url"
+                  id="website"
+                  name="website"
+                  placeholder="https://example.com"
+                  inputmode="url"
+                />
+              </div>
+
+              <!-- Search -->
+              <div class="form__elem">
+                <label for="search">Пошук</label>
+                <input
+                  type="search"
+                  id="search"
+                  name="search"
+                  placeholder="Пошук..."
+                  inputmode="search"
+                />
+              </div>
+
+              <!-- Number -->
+              <div class="form__elem">
+                <label for="age">Вік</label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="1"
+                  max="120"
+                  step="1"
+                  value="18"
+                  inputmode="decimal"
+                />
+              </div>
+
+              <!-- Range -->
+              <div class="form__elem">
+                <label for="experience">Досвід (років)</label>
+                <input
+                  type="range"
+                  id="experience"
+                  name="experience"
+                  min="0"
+                  max="30"
+                  step="1"
+                  value="5"
+                  inputmode="decimal"
+                />
+              </div>
+
+              <!-- Date -->
+              <div class="form__elem">
+                <label for="birthDate">Дата народження</label>
+                <input type="date" id="birthDate" name="birthDate" />
+              </div>
+
+              <!-- Time -->
+              <div class="form__elem">
+                <label for="meetingTime">Час зустрічі</label>
+                <input type="time" id="meetingTime" name="meetingTime" />
+              </div>
+
+              <!-- Datetime-local -->
+              <div class="form__elem">
+                <label for="appointment">Дата та час</label>
+                <input
+                  type="datetime-local"
+                  id="appointment"
+                  name="appointment"
+                />
+              </div>
+
+              <!-- Month -->
+              <div class="form__elem">
+                <label for="month">Місяць</label>
+                <input type="month" id="month" name="month" />
+              </div>
+
+              <!-- Week -->
+              <div class="form__elem">
+                <label for="week">Тиждень</label>
+                <input type="week" id="week" name="week" />
+              </div>
+
+              <!-- Color -->
+              <div class="form__elem">
+                <label for="color">Улюблений колір</label>
+                <input type="color" id="color" name="color" value="#0d6efd" />
+              </div>
+
+              <!-- File -->
+              <div class="form__elem">
+                <label for="avatar">Фото профілю</label>
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  accept=".jpg,.jpeg,.png,.webp"
+                />
+              </div>
+
+              <!-- Hidden -->
+              <input type="hidden" id="userId" name="userId" value="12345" />
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend>Стать</legend>
+
+              <input type="radio" id="male" name="gender" value="male" />
+
+              <label for="male">Чоловіча</label>
+
+              <input type="radio" id="female" name="gender" value="female" />
+
+              <label for="female">Жіноча</label>
+
+              <input type="radio" id="other" name="gender" value="other" />
+
+              <label for="other">Інше</label>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend>Навички</legend>
+
+              <input type="checkbox" id="html" name="skills" value="HTML" />
+
+              <label for="html">HTML</label>
+
+              <input type="checkbox" id="css" name="skills" value="CSS" />
+
+              <label for="css">CSS</label>
+
+              <input type="checkbox" id="js" name="skills" value="JavaScript" />
+
+              <label for="js">JavaScript</label>
+            </fieldset>
+
+            <!-- Select -->
+            <div class="form__elem">
+              <label for="country">Країна</label>
+
+              <select id="country" name="country" required>
+                <option value="">Оберіть країну</option>
+
+                <optgroup label="Європа">
+                  <option value="ua">Україна</option>
+                  <option value="pl">Польща</option>
+                  <option value="de">Німеччина</option>
+                </optgroup>
+
+                <optgroup label="Америка">
+                  <option value="us">США</option>
+                  <option value="ca">Канада</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <!-- Datalist -->
+            <div class="form__elem">
+              <label for="city">Місто</label>
+
+              <input list="cities" id="city" name="city" />
+
+              <datalist id="cities">
+                <option value="Київ"></option>
+                <option value="Львів"></option>
+                <option value="Одеса"></option>
+                <option value="Харків"></option>
+              </datalist>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form__elem">
+              <label for="about">Про себе</label>
+
+              <textarea
+                id="about"
+                name="about"
+                rows="5"
+                cols="40"
+                maxlength="500"
+                placeholder="Напишіть декілька слів про себе..."
+              ></textarea>
+            </div>
+
+            <!-- Output -->
+            <div class="form__elem">
+              <label for="score">Результат:</label>
+              <output id="score" name="score">0</output>
+            </div>
+
+            <!-- Progress -->
+            <div class="form__elem">
+              <label for="progress">Заповнення:</label>
+              <progress id="progress" value="70" max="100">70%</progress>
+            </div>
+
+            <!-- Meter -->
+            <div class="form__elem">
+              <label for="strength">Надійність пароля</label>
+              <meter
+                id="strength"
+                min="0"
+                max="100"
+                low="30"
+                high="80"
+                optimum="100"
+                value="65"
+              >
+                65%
+              </meter>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form__elem">
+              <button type="submit" class="form__submit">Надіслати</button>
+
+              <button type="reset">Очистити</button>
+
+              <button type="button">Звичайна кнопка</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./form.js"></script>
+  </body>
+</html>

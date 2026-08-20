@@ -1,0 +1,136 @@
+@use "sass:math";
+@use "vars" as *;
+
+@function get-value(
+  $min-width,
+  $max-width,
+  $size-at-min-width,
+  $size-at-max-width,
+  $unit
+) {
+  $return-value: calc(
+    #{$size-at-min-width + $unit} +
+      (#{$size-at-max-width - $size-at-min-width}) *
+      ((100vw - #{$min-width + $unit}) / (#{$max-width - $min-width}))
+  );
+  @return $return-value;
+}
+@mixin adaptive-property(
+  $property,
+  $mobile-size,
+  $tablet-size,
+  $desktop-size,
+  $unit: px
+) {
+  $max-width: 1466;
+  $min-width: 320;
+  $tablet-width: 767.98;
+
+  @if ($unit ==rem) {
+    $max-width: math.div(1466, 16);
+    $min-width: math.div(320, 16);
+    $tablet-width: math.div(767.98, 16);
+  }
+
+  @if ($tablet-size ==0) {
+    #{$property}: $desktop-size + $unit;
+
+    @media (max-width: 1466px) {
+      #{$property}: get-value(
+        $min-width,
+        $max-width,
+        $mobile-size,
+        $desktop-size,
+        $unit
+      );
+    }
+  } @else {
+    #{$property}: get-value(
+      $min-width,
+      $tablet-width,
+      $mobile-size,
+      $tablet-size,
+      $unit
+    );
+
+    @media (min-width: 767.98px) {
+      #{$property}: get-value(
+        $tablet-width,
+        $max-width,
+        $tablet-size,
+        $desktop-size,
+        $unit
+      );
+    }
+
+    @media (min-width: 1466px) {
+      #{$property}: $desktop-size + $unit;
+    }
+  }
+}
+@mixin on-desktop {
+  @media (min-width: #{$pc}px) {
+    @content;
+  }
+}
+@mixin on-tablet {
+  @media (min-width: #{$tablet}px) {
+    @content;
+  }
+}
+@mixin on-mobile-l {
+  @media (min-width: #{$mobile-l}px) {
+    @content;
+  }
+}
+@mixin on-mobile-s {
+  @media (min-width: #{$mobile-s}px) {
+    @content;
+  }
+}
+@mixin hover() {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-within {
+      @content;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active,
+    &:focus,
+    &:focus-within {
+      @content;
+    }
+  }
+}
+@mixin hover-pseudo($pseudo) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover#{$pseudo},
+    &:focus-within#{$pseudo} {
+      @content;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active#{$pseudo},
+    &:focus#{$pseudo},
+    &:focus-within#{$pseudo} {
+      @content;
+    }
+  }
+}
+@mixin ibg($size: cover) {
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: $size;
+    object-position: center;
+  }
+}
+@mixin font-lena {
+  font-family: "Lena";
+  font-weight: 400;
+}

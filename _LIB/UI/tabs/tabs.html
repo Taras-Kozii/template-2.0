@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TABS</title>
+    <link rel="stylesheet" href="../null.css" />
+    <link rel="stylesheet" href="./tabs.css" />
+  </head>
+  <body class="page">
+    <div class="wrapper">
+      <main class="main">
+        <section class="main__section">
+          <div class="tabs">
+            <ul class="tabs__links">
+              <li class="tabs__link active" data-targetTab="tab-1">Tab 1</li>
+              <li class="tabs__link" data-targetTab="tab-2">Tab 2</li>
+              <li class="tabs__link" data-targetTab="tab-3">Tab 3</li>
+              <li class="tabs__link" data-targetTab="tab-4">Tab 4</li>
+            </ul>
+
+            <div class="tabs__items">
+              <div class="tabs__item active" id="tab-1">
+                <h2>Tab 1</h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nisi
+                eaque quidem at commodi tempore itaque doloremque dolores vitae,
+                obcaecati ducimus neque voluptatibus reiciendis modi sit quasi
+                sunt. Doloremque, unde?
+              </div>
+              <div class="tabs__item" id="tab-2">
+                <h2>Tab 2</h2>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut,
+                inventore sequi beatae, quo quidem nisi sapiente ipsum expedita
+                nam suscipit dolorem eius. Voluptate, ipsam? Sunt quas sequi nam
+                nemo. Dolorum repellendus delectus dolore quia architecto.
+                Sapiente id voluptatibus minus possimus, laborum odit
+                repudiandae nihil distinctio amet aliquid consequuntur quae esse
+                corporis temporibus nostrum ex neque totam placeat accusamus
+                pariatur earum.
+              </div>
+              <div class="tabs__item" id="tab-3">
+                <h2>Tab 3</h2>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Assumenda eveniet neque quasi, maiores repellat ipsum
+                consectetur reiciendis, dolorum vel aliquam harum cum inventore?
+                Reprehenderit at deleniti earum repellat aliquam quaerat aliquid
+                corporis temporibus, minima suscipit, ullam accusamus, libero
+                quis. Ipsam repellat hic, dicta sit quo, enim, veritatis
+                voluptate fuga repellendus vero non nisi. Animi quibusdam, eius
+                impedit vel error voluptas consequatur amet nobis atque velit
+                fugit id? Deleniti, ipsa corporis quis maxime cumque ratione
+                necessitatibus esse iure distinctio sunt doloribus?
+              </div>
+              <div class="tabs__item" id="tab-4">
+                <h2>Tab 4</h2>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
+                natus. Labore mollitia nesciunt quam consectetur provident
+                rerum. Iusto laboriosam itaque nulla consectetur doloribus. Rem
+                praesentium ullam voluptatem accusamus recusandae corporis
+                dignissimos a repellendus eaque laudantium, labore impedit
+                voluptates aliquid dolore?
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="main__section">
+          <div class="liquid-group">
+            <input
+              type="radio"
+              id="value-1"
+              name="value-radio"
+              value="value-1"
+              checked=""
+            />
+            <label for="value-1">Static</label>
+
+            <input
+              type="radio"
+              id="value-2"
+              name="value-radio"
+              value="value-2"
+            />
+            <label for="value-2">Liquid</label>
+
+            <input
+              type="radio"
+              id="value-3"
+              name="value-radio"
+              value="value-3"
+            />
+            <label for="value-3">Fluid</label>
+
+            <div class="liquid-slider"></div>
+          </div>
+        </section>
+        <section class="main__section">
+          <div class="radio-input">
+            <label>
+              <input
+                type="radio"
+                id="value-1"
+                name="value-radio"
+                value="value-1"
+              />
+              <span>1</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                id="value-2"
+                name="value-radio"
+                value="value-2"
+              />
+              <span>2</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                id="value-3"
+                name="value-radio"
+                value="value-3"
+              />
+              <span>3</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                id="value-4"
+                name="value-radio"
+                value="value-4"
+              />
+              <span>4</span>
+            </label>
+            <span class="selection"></span>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="tabs.js"></script>
+  </body>
+</html>

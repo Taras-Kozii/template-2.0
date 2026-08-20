@@ -1,0 +1,6 @@
+@use "../utiles/index" as *;
+
+.subtitle {
+  font-weight: 700;
+  @include adaptive-property(font-size, 0.9375, 0, 1.875, rem);
+}

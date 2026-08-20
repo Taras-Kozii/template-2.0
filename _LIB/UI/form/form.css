@@ -1,0 +1,160 @@
+form {
+  --mx-width: 900px;
+  --padding: 2rem;
+  --border-radius: 12px;
+  --bg-color: #fefe;
+  --color: #222;
+
+  max-width: var(--mx-width);
+  margin: 0 auto;
+  padding: var(--padding);
+  background: var(--bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+::placeholder {
+  --placeholder-color: #704646;
+  color: var(--placeholder-color);
+}
+div.form__elem:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/*===Fieldset========================*/
+fieldset {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+}
+legend {
+  padding: 0 10px;
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+/*===Labels=========================*/
+label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/*===Inputs=========================*/
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(
+    [type="color"]
+  ):not([type="file"]),
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  background: #fff;
+  transition: 0.25s;
+}
+
+/*===Textarea===========================*/
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/*===File Input=========================*/
+input[type="file"] {
+  padding: 0.5rem 0;
+}
+
+/*===Color Input=======================*/
+input[type="color"] {
+  width: 70px;
+  height: 45px;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/*===Range==============================*/
+input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+/*===Checkbox & Radio=================*/
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #0d6efd;
+}
+
+/* Відображення чекбоксів та радіокнопок */
+fieldset input[type="checkbox"],
+fieldset input[type="radio"] {
+  margin-top: 0.5rem;
+}
+fieldset input[type="checkbox"] + label,
+fieldset input[type="radio"] + label {
+  display: inline-block;
+  margin-right: 1.5rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+/*===Progress & Meter==================*/
+progress,
+meter {
+  width: 100%;
+  height: 25px;
+}
+
+/*===Output===========================*/
+output {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  background: #eef5ff;
+  border: 1px solid #0d6efd;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/*===Buttons========================*/
+button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/*=============================================СТАН ЕЛЕМЕНТІВ */
+/*===Focus========================*/
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+/*===Validation======================== */
+input:required,
+select:required,
+textarea:required {
+  border-left: 4px solid #0d6efd;
+}
+input:valid {
+  border-color: #198754;
+}
+input:invalid:not(:placeholder-shown) {
+  border-color: #dc3545;
+}
+
+/*===Disabled========================== */
+input:disabled,
+select:disabled,
+textarea:disabled,
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

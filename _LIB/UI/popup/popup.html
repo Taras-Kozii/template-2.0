@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POPUPS</title>
+    <link rel="stylesheet" href="../null.css" />
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body class="page">
+    <div class="wrapper">
+      <main class="main">
+        <section class="main__section">
+          <h1 class="main__title">POPUPS</h1>
+          <div class="main__content">
+            <button class="button" data-open-popup="call">
+              <span>Дзвінок</span>
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+    <dialog class="popup" data-popup="call">
+      <button type="button" class="popup__close" data-close-popup="call">
+        <span></span>
+      </button>
+      <div class="popup__content">
+        <h4 class="popup__title">Some title</h4>
+        <div class="popup__text">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            nihil nesciunt tempora molestias explicabo sequi maiores neque.
+            Quaerat laborum sequi sit doloremque ipsum expedita dolore in
+            minima, vel voluptates inventore id nobis? Labore iste illo
+            necessitatibus enim earum, dolores officia.
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            nihil nesciunt tempora molestias explicabo sequi maiores neque.
+            Quaerat laborum sequi sit doloremque ipsum expedita dolore in
+            minima, vel voluptates inventore id nobis? Labore iste illo
+            necessitatibus enim earum, dolores officia.
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            nihil nesciunt tempora molestias explicabo sequi maiores neque.
+            Quaerat laborum sequi sit doloremque ipsum expedita dolore in
+            minima, vel voluptates inventore id nobis? Labore iste illo
+            necessitatibus enim earum, dolores officia.
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            nihil nesciunt tempora molestias explicabo sequi maiores neque.
+            Quaerat laborum sequi sit doloremque ipsum expedita dolore in
+            minima, vel voluptates inventore id nobis? Labore iste illo
+            necessitatibus enim earum, dolores officia.
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            nihil nesciunt tempora molestias explicabo sequi maiores neque.
+            Quaerat laborum sequi sit doloremque ipsum expedita dolore in
+            minima, vel voluptates inventore id nobis? Labore iste illo
+            necessitatibus enim earum, dolores officia.
+          </p>
+        </div>
+        <form action="#" method="post" class="popup__form form-popup"></form>
+
+        <button class="button" data-open-popup="call-2">
+          <span>Дзвінок</span>
+        </button>
+      </div>
+    </dialog>
+    <dialog class="popup" data-popup="call-2">
+      <button type="button" class="popup__close" data-close-popup="call">
+        <span></span>
+      </button>
+      <div class="popup__content">
+        <h4 class="popup__title">POPUP 2</h4>
+        <form action="#" method="post" class="form get-info__form">
+          <!-- КОРИСТУВАЧ -->
+          <div class="form__item">
+            <label for="username">ПІБ*</label>
+            <input
+              type="text"
+              name="name"
+              id="username"
+              placeholder="Сергій Анатолійович"
+              required
+              minlength="3"
+              class="form__text"
+            />
+          </div>
+          <!-- ТЕЛЕФОН -->
+          <div class="form__item">
+            <label for="usertel">Номер телефону*</label>
+            <input
+              type="tel"
+              name="phone"
+              id="usertel"
+              placeholder="+38 (000) 000 00 00"
+              inputmode="tel"
+              pattern="^(\+380\d{9}|0\d{9})$"
+              required
+            />
+          </div>
+          <!-- ПОШТА -->
+          <div class="form__item">
+            <label for="usertel">
+              <input
+                type="email"
+                name="email"
+                id="usertel"
+                required
+                inputmode="email"
+                placeholder="name@domain.com"
+              />
+            </label>
+          </div>
+          <!-- ЧАС -->
+          <div class="form__item">
+            <label for="time">Зручний час</label>
+            <input type="time" name="time" id="time" />
+          </div>
+          <button
+            type="submit"
+            class="button form__submit"
+            data-close-popup="call-2"
+          >
+            Дзвінок
+          </button>
+        </form>
+      </div>
+    </dialog>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

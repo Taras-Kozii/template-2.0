@@ -1,0 +1,41 @@
+.spoller {
+  max-width: 1020px;
+  display: grid;
+  grid-template-rows: minmax(30px, 65px) 0fr;
+  transition: 0.3s ease-in-out;
+}
+.spoller__title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  padding-block: 1.2rem;
+  padding-inline: 1.4rem;
+}
+.spoller__title:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 9px 10px 0 10px;
+  border-color: #000 transparent transparent transparent;
+  transition: 0.3s ease-in-out;
+  z-index: 2;
+}
+.spoller__content {
+  overflow: hidden;
+  padding-inline: 1.4rem;
+}
+
+.spoller.active {
+  grid-template-rows: minmax(30px, 65px) 1fr;
+  transition: 0.3s ease-in;
+}
+
+.spoller.active .spoller__title:before {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,11 @@
+.digits {
+  font-size: 5rem;
+  color: rgba(255, 0, 0, 0.667);
+}
+.main__content {
+  height: 100svh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 4rem;
+}

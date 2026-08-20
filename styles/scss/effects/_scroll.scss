@@ -1,0 +1,45 @@
+@use "../utiles/index" as *;
+
+// -------------------SHOW TOP + BLUR
+.scroll-show-top {
+  opacity: 0;
+  transform: translate(0, 100px);
+  filter: blur(33px);
+  transition: opacity, transform, filter;
+  transition-duration: $transition-duraction;
+  transition-timing-function: ease-in-out;
+}
+.scroll-show-top.active {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: blur(0);
+}
+
+// -------------------SHOW LEFT TO RIGHT + BLUR
+.scroll-show-left-right {
+  opacity: 0;
+  transform: translate(-30px, 0px);
+  filter: blur(33px);
+  transition: opacity, transform, filter;
+  transition-duration: $transition-duraction;
+  transition-timing-function: ease-in-out;
+}
+.scroll-show-left-right.active {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: blur(0);
+}
+
+.scroll-swing-in-top {
+  transition:
+    opacity $transition-duraction ease-in-out var(--delay),
+    transform $transition-duraction ease-in-out var(--delay);
+  transform: rotateX(-100deg);
+  transform-origin: top;
+  opacity: 0;
+}
+.scroll-swing-in-top.active {
+  transform: rotateX(0deg);
+  transform-origin: top;
+  opacity: 1;
+}

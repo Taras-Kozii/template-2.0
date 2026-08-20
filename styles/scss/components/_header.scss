@@ -1,0 +1,38 @@
+@use "../utiles/index" as *;
+
+.header {
+  position: sticky;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  transition: $transition-duraction ease-in-out;
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 2rem;
+    transition: $transition-duraction ease-in-out;
+    @include adaptive-property(padding-block, 12, 0, 22);
+  }
+
+  &__logo {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    font-size: 1.8rem;
+  }
+}
+
+.header.scrolling {
+  background: rgba(79, 79, 84, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.header.hidden {
+  opacity: 0;
+  transform: translateY(-30px);
+}

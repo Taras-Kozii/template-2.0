@@ -1,0 +1,70 @@
+.header-label {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .header-label {
+    display: flex;
+  }
+  }
+
+.header-label {
+  position: relative;
+  border-radius: 16px;
+  padding: 0.8em 1.3em;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.header-label.open {
+  background-color: #000;
+}
+
+.header-input {
+  border: 0;
+  outline: 0;
+  background: none;
+  font: inherit;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  max-width: 257px;
+  transform-origin: center left;
+  color: red;
+  transition: width 0.3s;
+}
+
+.open .header-input {
+  width: 150px;
+}
+
+.header-button {
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 4px;
+  left: 19px;
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+  color: #000;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.header-button:hover {
+  color: #5d5a9f;
+}
+
+.open .header-button {
+  color: blue;
+}
+
+.header.scrolling svg path {
+  stroke: #fff;
+}
+
+.header-label.open svg path {
+  stroke: blue;
+}

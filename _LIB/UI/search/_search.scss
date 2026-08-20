@@ -1,0 +1,79 @@
+@use "../../styles/scss/utils/index" as *;
+
+$radius: 16px;
+$transition-duraction: 0.3s;
+$text-color-main: #000;
+$bg-color-main: #fff;
+
+.header-label {
+  display: none;
+
+  @include on-mobile-l {
+    display: flex;
+  }
+
+  position: relative;
+  border-radius: $radius;
+  padding: 0.8rem 1rem;
+  background-color: transparent;
+  transition: background-color $transition-duraction;
+
+  &.open {
+    background-color: $text-color-main;
+  }
+}
+
+.header-input {
+  --width: 260px;
+
+  border: 0;
+  outline: 0;
+  background: none;
+  font: inherit;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  transition: width $transition-duraction;
+  max-width: var(--width);
+  transform-origin: center left;
+  color: $text-color-main;
+
+  .open & {
+    width: 150px;
+  }
+}
+
+.header-button {
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 4px;
+  left: 19px;
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+  color: $text-color-main;
+  transition: color $transition-duraction;
+  cursor: pointer;
+
+  &:hover {
+    color: #5d5a9f;
+  }
+
+  .open & {
+    color: $bg-color-main;
+  }
+}
+
+.header.scrolling {
+  svg path {
+    stroke: #fff;
+  }
+}
+
+.header-label.open {
+  svg path {
+    stroke: $bg-color-main;
+  }
+}

@@ -1,0 +1,48 @@
+.spoller {
+  $width: 1020px;
+
+  max-width: $width;
+  display: grid;
+  grid-template-rows: minmax(30px, 65px) 0fr;
+  transition: $transition-duraction ease-in-out;
+
+  &__title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    padding-block: 1.2rem;
+    padding-inline: 1.4rem;
+    @include adaptive-property(padding-block, 0.6, 0, 1.2, rem);
+    @include adaptive-property(padding-inline, 0.7, 0, 1.4, rem);
+
+    &:before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 9px 10px 0 10px;
+      border-color: #0000 transparent transparent transparent;
+      transition: $transition-duraction ease-in-out;
+      z-index: 2;
+      // background-image: url("../../images/icons/arrow-down.svg");
+      // background-position: center;
+      // background-size: cover;
+      // @include adaptive-property(right, 0, 0, 27);
+    }
+  }
+  &__content {
+    overflow: hidden;
+    @include adaptive-property(padding-inline, 0.6, 0, 1.3, rem);
+  }
+}
+.spoller.active {
+  grid-template-rows: minmax(30px, 65px) 1fr;
+  transition: $transition-duraction ease-in;
+}
+.spoller.active .spoller__title:before {
+  transform: rotate(180deg);
+}
